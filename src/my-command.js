@@ -85,18 +85,20 @@ export default function(context) {
       current ++
       const frame = new Rectangle(layout.left, layout.top, layout.width, layout.height)
 
-      const shape = new Shape({
-        parent: parentLayer,
-        name: props.name,
-        frame,
-      })
+      if (props.backgroundColor) {
+        const shape = new Shape({
+          parent: parentLayer,
+          name: props.name,
+          frame,
+        })
 
-      shape.style.fills = [
-        {
-          color: props.backgroundColor,
-          fillType: Style.FillType.Color,
-        },
-      ]
+        shape.style.fills = [
+          {
+            color: props.backgroundColor,
+            fillType: Style.FillType.Color,
+          },
+        ]
+      }
 
       if (childNodes(childNode).length > 0) {
         const newParentLayer = new Group({
