@@ -72,18 +72,6 @@ export default function(context) {
     return result
   }
 
-  const root = getNode(json)
-  const rootLayout = root.getComputedLayout()
-  root.calculateLayout(rootLayout.width, rootLayout.height, yoga.DIRECTION_LTR)
-
-  const artboard = new Artboard({
-    name: layers[0].name,
-    flowStartPoint: true,
-    frame: new Rectangle(0, 0, root.getWidth(), root.getHeight()),
-    parent: fromNative(context.document).selectedPage,
-  })
-  let current = 1
-
   const buildTree = (root, parentLayer) => {
     childNodes(root).map(childNode => {
       const layout = childNode.getComputedLayout()
@@ -117,7 +105,21 @@ export default function(context) {
     })
   }
 
-  buildTree(root, artboard)
+  let current = 1
+  const run = (json) => {
+    const root = getNode(json)
+    const rootLayout = root.getComputedLayout()
+    root.calculateLayout(rootLayout.width, rootLayout.height, yoga.DIRECTION_LTR)
 
-  context.document.showMessage("DONE")
+    const artboard = new Artboard({
+      name: layers[0].name,
+      flowStartPoint: true,
+      frame: new Rectangle(0, 0, root.getWidth(), root.getHeight()),
+      parent: fromNative(context.document).selectedPage,
+    })
+    buildTree(root, artboard)
+    context.document.showMessage("DONE")
+  }
+
+  run(json)
 }
