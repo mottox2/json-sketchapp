@@ -23,12 +23,12 @@ export default function(context) {
         name: 'layer2',
         height: 48,
         backgroundColor: '#f5f5f5',
-        flexDirection: yoga.FLEX_DIRECTION_ROW,
+        flexDirection: 'row',
         children: [
           {
             name: 'body',
             width: 40,
-            backgroundColor: 'red'
+            backgroundColor: 'green'
           },
           {
             name: 'body',
@@ -51,7 +51,12 @@ export default function(context) {
       node.setFlexGrow(nodeJson.flexGrow)
     }
     if (nodeJson.flexDirection) {
-      node.setFlexDirection(nodeJson.flexDirection)
+      node.setFlexDirection({
+        row: yoga.FLEX_DIRECTION_ROW,
+        'row-reverse': yoga.FLEX_DIRECTION_ROW_REVERSE,
+        column: yoga.FLEX_DIRECTION_COLUMN,
+        'column-reverse': yoga.FLEX_DIRECTION_COLUMN_REVERSE,
+      }[nodeJson.flexDirection])
     }
     getChildNodes(nodeJson).map((childNode, index) => {
       node.insertChild(childNode, index)
@@ -107,6 +112,7 @@ export default function(context) {
 
   let current = 1
   const run = (json) => {
+    fromNative(context.document).selectedPage.layers.forEach(layer => layer.remove())
     const root = getNode(json)
     const rootLayout = root.getComputedLayout()
     root.calculateLayout(rootLayout.width, rootLayout.height, yoga.DIRECTION_LTR)
@@ -121,5 +127,24 @@ export default function(context) {
     context.document.showMessage("DONE")
   }
 
-  run(json)
+  // run(json)
+
+  // https://qiita.com/littlebusters/items/b919693f4f3d4c183ce0#json%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E9%81%B8%E6%8A%9E%E3%81%97%E3%81%A6%E3%83%91%E3%83%BC%E3%82%B9
+  var openPanel = NSOpenPanel.openPanel();
+    openPanel.setTitle( "Choose a JSON File" ); // ダイアログのタイトル
+    openPanel.setCanCreateDirectories = false; // ディレクトリの作成を許可するか
+    openPanel.setCanChooseFiles = true; // ファイル選択を許可するか
+
+  var fileTypes = ['json']; // 選択できるファイルタイプを設定
+  var openPanelButtonPressed = openPanel.runModalForDirectory_file_types_( nil, nil, fileTypes );
+
+  if ( openPanelButtonPressed == NSFileHandlingPanelOKButton ) {
+    var filePath = openPanel.URL().path();
+    var selectedJson = JSON.parse( NSString.stringWithContentsOfFile( filePath ) );
+    console.log(selectedJson)
+    log( 'Open File from: ' + filePath );
+    run(selectedJson)
+  } else {
+    return false;
+  }
 }
