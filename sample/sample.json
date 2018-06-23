@@ -3,30 +3,40 @@
   "width": 375,
   "height": 667,
   "children": [{
-      "name": "layer1",
-      "height": 48,
-      "backgroundColor": "#315096"
-    },
-    {
-      "name": "body",
-      "height": 300,
-      "flexGrow": 1,
-      "backgroundColor": "#7ED321"
-    },
-    {
-      "name": "layer2",
-      "height": 60,
-      "backgroundColor": "#f5f5f5",
-      "flexDirection": "row",
+      "name": "Top Bars",
+      "height": "auto",
       "children": [{
-          "name": "body",
-          "width": 40,
-          "backgroundColor": "yellow"
+          "name": "Status Bar",
+          "height": 24,
+          "backgroundColor": "#E8E8E8"
         },
         {
-          "name": "body",
-          "width": 40,
-          "backgroundColor": "blue"
+          "name": "App Bar",
+          "height": 56,
+          "backgroundColor": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "name": "Body",
+      "height": 300,
+      "flexGrow": 1,
+      "backgroundColor": "#F5F5F5"
+    },
+    {
+      "name": "Bottom Navigation",
+      "height": 56,
+      "backgroundColor": "#6202EE",
+      "flexDirection": "row",
+      "children": [{
+          "name": "Navigation Item",
+          "width": 56,
+          "backgroundColor": "white"
+        },
+        {
+          "name": "Navigation Item",
+          "width": 56,
+          "backgroundColor": "#40009D"
         }
       ]
     }
