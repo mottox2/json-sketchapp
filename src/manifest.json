@@ -4,15 +4,15 @@
   "icon": "icon.png",
   "commands": [
     {
-      "name": "my-command",
-      "identifier": "my-command-identifier",
+      "name": "Import from JSON...",
+      "identifier": "import",
       "script": "./my-command.js"
     }
   ],
   "menu": {
-    "title": "json-sketchapp",
+    "title": "JSON Sketch.app",
     "items": [
-      "my-command-identifier"
+      "import"
     ]
   }
 }
