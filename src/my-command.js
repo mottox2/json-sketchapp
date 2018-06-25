@@ -1,6 +1,6 @@
 import yoga, { Node } from 'yoga-layout'
 import { fromNative } from 'sketch'
-import { Document, Artboard, Rectangle, Group, Shape, Style } from 'sketch/dom'
+import { Document, Artboard, Rectangle, Group, Shape, Style, Text } from 'sketch/dom'
 
 export default function(context) {
   const json = {
@@ -28,7 +28,8 @@ export default function(context) {
           {
             name: 'body',
             width: 40,
-            backgroundColor: 'green'
+            backgroundColor: 'green',
+            text: 'Nav1'
           },
           {
             name: 'body',
@@ -98,6 +99,13 @@ export default function(context) {
             fillType: Style.FillType.Color,
           },
         ]
+      }
+
+      if(props.text) {
+        new Text({
+          text: props.text,
+          parent: parentLayer
+        })
       }
 
       if (childNodes(childNode).length > 0) {

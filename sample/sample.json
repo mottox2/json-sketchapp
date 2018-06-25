@@ -31,7 +31,8 @@
       "children": [{
           "name": "Navigation Item",
           "width": 56,
-          "backgroundColor": "white"
+          "backgroundColor": "white",
+          "text": "Nav1"
         },
         {
           "name": "Navigation Item",
