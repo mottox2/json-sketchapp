@@ -1,7 +1,7 @@
 # JSON Sketch.app
 
 This sketch plugin is **experimental project**.
-Convert Sketch file from JSON.
+Convert JSON file to Sketch file.
 
 ## Usage
 
