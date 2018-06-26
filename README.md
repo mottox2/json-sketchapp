@@ -1,8 +1,28 @@
-# json-sketchapp
+# JSON Sketch.app
+
+This sketch plugin is **experimental project**.
+Convert Sketch file from JSON.
+
+## Usage
+
+Install plugin.
+
+```bash
+npm run build
+```
+
+Select **Plugins > JSON Sketch.app > Import from JSON...** in sketchapp
+
+<img width="616" alt="2018-06-26 16 52 19" src="https://user-images.githubusercontent.com/7007253/41897154-83276134-7961-11e8-8cc1-14f964b0fe13.png">
+
+## JSON structure
+[Sample](https://github.com/mottox2/json-sketchapp/blob/master/sample/sample.json)
+
+
+## Development
 
 _This plugin was created using `skpm`. For a detailed explanation on how things work, checkout the [skpm Readme](https://github.com/skpm/skpm/blob/master/README.md)._
 
-## Usage
 
 Install the dependencies
 
